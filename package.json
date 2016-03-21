@@ -9,6 +9,9 @@
   "author": "Moustafa Mowaffak",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "express": "~4.13.4"
+    "express": "~4.13.4",
+    "mysql": "~2.10.2",
+    "react": "~0.14.7",
+    "react-dom": "~0.14.7"
   }
 }
