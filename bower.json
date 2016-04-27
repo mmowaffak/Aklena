@@ -1,0 +1,23 @@
+{
+  "name": "Aklena",
+  "description": "Food aggregator for Eventum",
+  "main": "index.js",
+  "authors": [
+    "Moustafa Mowaffak"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/mmowaffak/Aklena",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2",
+    "bootstrap": "^3.3.6"
+  }
+}
