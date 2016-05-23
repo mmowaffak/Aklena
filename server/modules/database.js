@@ -1,9 +1,9 @@
 var mysql   = require('mysql');
 module.exports ={};
-
+var connection ;
 exports = {
   initiate:function (){
-    var connection = mysql.createConnection({
+  connection = mysql.createConnection({
       host     : 'localhost',
       user     : 'root',
       password : ''
@@ -11,11 +11,17 @@ exports = {
     if(connection.connect()){
       console.log("Database is up!");
     }
-  //   connection.query('SELECT * from moustafa.employees', function(err, rows, fields) {
-  // if (err) throw err;
-  //   console.log('The solution is: ', rows[0].name);
-  // });
+  },
+
+  checkCredentials : function(username, password){
+       connection.query('SELECT * from Aklena.employees', function(err, rows, fields) {
+     if (err) throw err;
+       console.log('In database checking zzeft ... The solution is: ', rows);
+     });
+     return 1;
   }
-}
+
+  }
+
 
 module.exports = exports;
