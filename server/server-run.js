@@ -22,11 +22,8 @@ app.get('/', function (req, res) {
 //   res.sendFile(path.resolve("index.html"));
 // });
 app.post('/login',function (req, res) {
-  //res.send("Hello Login");
-  if(login.checkCredentials(req.body)){
-    console.log("Successful login!");
-  }
-  res.send("Successful");
+  res.send(login.checkCredentials(req.body));
+  
 });
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

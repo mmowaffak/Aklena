@@ -13,13 +13,12 @@ exports = {
     }
   },
 
-  checkCredentials : function(username, password){
-       connection.query('SELECT * from Aklena.employees', function(err, rows, fields) {
-     if (err) throw err;
-       console.log('In database checking zzeft ... The solution is: ', rows);
-     });
-     return 1;
+  getConnection: function(){
+    return connection;
   }
+
+  //@FIXME this should be made into a clean database api with sql injection avoidance
+
 
   }
 
