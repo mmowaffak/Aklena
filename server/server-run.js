@@ -17,13 +17,11 @@ app.use(express.static('assets'))
 app.get('/', function (req, res) {
   res.sendFile(path.resolve("index.html"));
 });
-
-// app.get('/dashboard', function (req, res) {
-//   res.sendFile(path.resolve("index.html"));
-// });
+ app.get('/dashboard', function (req, res) {
+   res.sendFile(path.resolve("dashboard.html"));
+ });
 app.post('/login',function (req, res) {
-  res.send(login.checkCredentials(req.body));
-  
+ login.checkCredentials(req.body,res);
 });
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

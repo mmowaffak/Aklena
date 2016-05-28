@@ -1,25 +1,20 @@
 var mysql   = require('mysql');
 module.exports ={};
-var connection ;
+connection ='';
+
 exports = {
   initiate:function (){
+
   connection = mysql.createConnection({
       host     : 'localhost',
       user     : 'root',
       password : ''
     });
+  module.exports.connection = connection;
     if(connection.connect()){
       console.log("Database is up!");
     }
   },
-
-  getConnection: function(){
-    return connection;
-  }
-
-  //@FIXME this should be made into a clean database api with sql injection avoidance
-
-
   }
 
 
