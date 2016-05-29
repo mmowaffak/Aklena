@@ -8,7 +8,7 @@ import Button from '../../node_modules/react-bootstrap/lib/Button';
 class LoginWidget extends React.Component{
    constructor(){
     super();
-    this.ENUMS = {"DB_ERROR":0,"FOUND":1,"NOT FOUND":2};    
+    this.ENUMS = {"DB_ERROR":0,"FOUND":1,"NOT FOUND":2};
   }
   clickEvent(){
     this.sendAuthData(this.state);
@@ -33,23 +33,10 @@ class LoginWidget extends React.Component{
       }
     );
   }
-  requestDashboard(id){
-    console.log("Requesting dashboard ... ");
-    $.get(
-      {
-        url:"dashboard",
-        dataType : "text",
-        data:id,
-        success: function(){
-          console.log("wslna dashboard");
-        }
-      }
-    );
-  }
+
   __sendAuthDataSuccess(data){
-      
-      self.requestDashboard(data["id"]);
-    
+      console.log("redirecting ... new assign way ... ");
+    window.location.replace("http://localhost:3000/dashboard");
   }
   render(){
     return(
