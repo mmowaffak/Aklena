@@ -15,8 +15,10 @@
     "babel-preset-react": "*",
     "body-parser": "*",
     "bower": "*",
+    "connect-redis": "^3.0.2",
     "cookie-parser": "^1.4.3",
     "express": "*",
+    "express-session": "^1.13.0",
     "history": "*",
     "jQuery": "^1.7.4",
     "jquery": "^2.2.4",
@@ -26,6 +28,7 @@
     "react-dom": "*",
     "react-router": "*",
     "react-tap-event-plugin": "*",
+    "redis": "^2.6.0-2",
     "webpack": "^1.13.0",
     "webpack-dev-server": "*"
   }

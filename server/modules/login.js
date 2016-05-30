@@ -9,18 +9,15 @@ exports = {
          if (err){
           retObj = {"status":0};
           reject(err);
-           //res.send(retObj);
          }
          else if (rows.length >= 1){
-           var retObj ={"status":1,"id":rows[0]["id"]};
+           var retObj ={"status":1,"id":rows[0]["id"],"name":rows[0]["fname"],"username":rows[0]["username"]};
            resolve(retObj);
-           //res.send(retObj);
           }
 
          else if (rows.length ==0 || !rows){
             retObj = {"status":-1};
             resolve(retObj);
-           //res.send(retObj);
         }
          });
       });

@@ -1,11 +1,14 @@
 var express = require('express');
-var mysql   = require('mysql');
 var jquery = require('jquery');
 var db = require('./modules/database.js');
 var bodyParser = require("body-parser");
 var path = require('path');
 var login = require("./modules/login");
 var cookieParser = require('cookie-parser');
+var redis   = require("redis");
+var session = require('express-session');
+var redisStore = require('connect-redis')(session);
+var client  = redis.createClient();
 var app = express();
 app.use(cookieParser());
 
@@ -13,34 +16,38 @@ db.initiate();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('assets'))
-
+app.use(express.static('assets'));
+app.use(session({
+    secret: 'ssshhhhh',
+    // create new redis store.
+    store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl :  260}),
+    saveUninitialized: false,
+    resave: false
+}));
 app.get('/', function (req, res) {
-  console.log("cookies" ,req.cookies);
-  if(req.cookies.data ==undefined){
-    console.log("sending back index");
-    res.sendFile(path.resolve("index.html"));
+  if(req.session.userKey){
+    res.sendFile(path.resolve("dashboard.html"));
+    res.send(req.session.name);
   }
   else {
-    console.log("da5alt fl else ... ");
-    res.sendFile(path.resolve("dashboard.html"));
+    res.sendFile(path.resolve("login.html"));
   }
 });
  app.get('/dashboard', function (req, res) {
-   if(req.cookies==undefined){
-     console.log("sending back index");
-     res.sendFile(path.resolve("index.html"));
+   if(req.session.userKey){
+     res.sendFile(path.resolve("dashboard.html"));
    }
    else{
-     console.log("sending back dashboard");
-     res.sendFile(path.resolve("dashboard.html"));
+     res.sendFile(path.resolve("login.html"));
    }
  });
 
 app.post('/login',function (req, res) {
  login.checkCredentials(req.body).then(function(data){
    if(data.status==1){
-      res.cookie("data",data.id);
+      req.session.userKey=data.id;
+      req.session.name=data.name;
+      req.session.username=data.username;
    }
    res.send(data);
  }).catch(function(err){
