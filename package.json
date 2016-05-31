@@ -26,6 +26,7 @@
     "react": "*",
     "react-bootstrap": "0.29.4",
     "react-dom": "*",
+    "react-grid-layout": "^0.12.4",
     "react-router": "*",
     "react-tap-event-plugin": "*",
     "redis": "^2.6.0-2",

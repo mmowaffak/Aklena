@@ -22,12 +22,12 @@ app.use(session({
     // create new redis store.
     store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl :  260}),
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    name :"moustafa"
 }));
 app.get('/', function (req, res) {
   if(req.session.userKey){
     res.sendFile(path.resolve("dashboard.html"));
-    res.send(req.session.name);
   }
   else {
     res.sendFile(path.resolve("login.html"));
@@ -41,7 +41,6 @@ app.get('/', function (req, res) {
      res.sendFile(path.resolve("login.html"));
    }
  });
-
 app.post('/login',function (req, res) {
  login.checkCredentials(req.body).then(function(data){
    if(data.status==1){

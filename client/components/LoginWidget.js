@@ -3,8 +3,6 @@ import FormControl from '../../node_modules/react-bootstrap/lib/FormControl';
 import Modal from '../../node_modules/react-bootstrap/lib/Modal';
 import Button from '../../node_modules/react-bootstrap/lib/Button';
 
-
-
 class LoginWidget extends React.Component{
    constructor(){
     super();
