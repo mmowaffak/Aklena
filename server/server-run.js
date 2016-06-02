@@ -47,7 +47,8 @@ app.post('/login',function (req, res) {
       req.session.userKey=data.id;
       req.session.name=data.name;
       req.session.username=data.username;
-   }
+      console.log("Setting cookie with",data.name);
+      res.cookie('data',data.name , { maxAge: 900000 });   }
    res.send(data);
  }).catch(function(err){
    console.log(err);

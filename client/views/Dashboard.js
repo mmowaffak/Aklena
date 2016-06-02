@@ -13,9 +13,10 @@ class Dashboard extends React.Component{
     {i: 'd', x: 8, y: 0, w: 4, h: 2},
 
   ];
+  console.log("El username wesel?? "+ this.props.userName);
   return (
     <div>
-    <MyNavBar>
+    <MyNavBar userName ={this.props.userName}>
     </MyNavBar>
     <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
       <div key={'b'}>
