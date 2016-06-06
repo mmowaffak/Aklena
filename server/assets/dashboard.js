@@ -69,8 +69,6 @@
 	  var parts = value.split("; " + name + "=");
 	  if (parts.length == 2) return parts.pop().split(";").shift();
 	}
-	
-	console.log("El cookie gebnaha? .." + getCookie("name"));
 	var app = document.getElementById('app');
 	_reactDom2.default.render(_react2.default.createElement(_Dashboard2.default, { userName: getCookie("data") }), app);
 
@@ -26148,7 +26146,6 @@
 	    value: function render() {
 	      // layout is an array of objects, see the demo for more complete usage
 	      var layout = [{ i: 'b', x: 0, y: 0, w: 4, h: 2 }, { i: 'c', x: 4, y: 0, w: 4, h: 2 }, { i: 'd', x: 8, y: 0, w: 4, h: 2 }];
-	      console.log("El username wesel?? " + this.props.userName);
 	      return _react2.default.createElement(
 	        "div",
 	        null,
@@ -26161,8 +26158,17 @@
 	            { key: 'b' },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
-	              { header: "Order History", bsStyle: "danger" },
-	              "Order History"
+	              { header: "Submit an Order", bsStyle: "danger" },
+	              _react2.default.createElement(
+	                _reactBootstrap.FormGroup,
+	                { controlId: "formControlsTextarea" },
+	                _react2.default.createElement(
+	                  _reactBootstrap.ControlLabel,
+	                  null,
+	                  "What do you feel like eating today?"
+	                ),
+	                _react2.default.createElement(_reactBootstrap.FormControl, { componentClass: "textarea", placeholder: "Submit your order 'Restaurant : Order'" })
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -26170,7 +26176,7 @@
 	            { key: 'c' },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
-	              { header: "Submit an Order", bsStyle: "danger" },
+	              { header: "Current Order", bsStyle: "danger" },
 	              "Submit an Order"
 	            )
 	          ),
@@ -26179,7 +26185,7 @@
 	            { key: 'd' },
 	            _react2.default.createElement(
 	              _reactBootstrap.Panel,
-	              { header: "Pending", bsStyle: "danger" },
+	              { header: "Order History", bsStyle: "danger" },
 	              "Pending"
 	            )
 	          )

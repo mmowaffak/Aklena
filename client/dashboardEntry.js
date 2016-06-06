@@ -8,7 +8,5 @@ function getCookie(name) {
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
-
-console.log("El cookie gebnaha? .."+ getCookie("name"));
 const app = document.getElementById('app');
 ReactDOM.render(<Dashboard userName={getCookie("data")} />,app);
