@@ -1,0 +1,15 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+
+# Dependency directories
+node_modules/
+
+# Generated Maps
+*.js.map
+
+# Optional npm cache directory
+.npm
+

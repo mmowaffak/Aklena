@@ -2,6 +2,7 @@ import React from "react"
 import FormControl from '../../node_modules/react-bootstrap/lib/FormControl';
 import Modal from '../../node_modules/react-bootstrap/lib/Modal';
 import Button from '../../node_modules/react-bootstrap/lib/Button';
+import Utilities from '../modules/Utilities.js';
 
 class LoginWidget extends React.Component{
    constructor(){
@@ -21,19 +22,10 @@ class LoginWidget extends React.Component{
   }
 
   sendAuthData(){
-    self = this;
-    $.post(
-      {
-        url:"login",
-        dataType : "text",
-        data:self.state,
-        success: self.__sendAuthDataSuccess
-      }
-    );
+    Utilities.sendData(this.state,"login",this.__sendAuthDataSuccess);
   }
 
   __sendAuthDataSuccess(data){
-      console.log("redirecting ... new assign way ... ");
     window.location.replace("http://localhost:3000/dashboard");
   }
   render(){

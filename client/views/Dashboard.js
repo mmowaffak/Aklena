@@ -5,8 +5,7 @@ import MyNavBar from "../components/NavBar.js";
 import OrderHistoryWidget from "../components/OrderHistoryWidget.js";
 import CurrentOrderWidget from "../components/CurrentOrderWidget.js";
 import OrderSubmitWidget from "../components/OrderSubmitWidget.js";
-
-
+ 
 
 class Dashboard extends React.Component{
   render() {
@@ -19,7 +18,7 @@ class Dashboard extends React.Component{
   ];
   return (
     <div>
-    <MyNavBar userName ={this.props.userName}>
+    <MyNavBar userName ={this.props.data.name}>
     </MyNavBar>
     <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
       <div key={'b'}>

@@ -54,7 +54,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _LoginWidget = __webpack_require__(452);
+	var _LoginWidget = __webpack_require__(556);
 	
 	var _LoginWidget2 = _interopRequireDefault(_LoginWidget);
 	
@@ -25804,6 +25804,131 @@
 /* 450 */,
 /* 451 */,
 /* 452 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {};
+	
+	exports = {
+	  sendData: function sendData(data, resource, successCallBack) {
+	    var returnType = arguments.length <= 3 || arguments[3] === undefined ? 'text' : arguments[3];
+	
+	    $.post({
+	      url: resource,
+	      dataType: returnType,
+	      data: data,
+	      success: successCallBack
+	    });
+	  }
+	};
+	module.exports = exports;
+
+/***/ },
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25829,6 +25954,10 @@
 	var _Button = __webpack_require__(234);
 	
 	var _Button2 = _interopRequireDefault(_Button);
+	
+	var _Utilities = __webpack_require__(452);
+	
+	var _Utilities2 = _interopRequireDefault(_Utilities);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25870,18 +25999,11 @@
 	  }, {
 	    key: 'sendAuthData',
 	    value: function sendAuthData() {
-	      self = this;
-	      $.post({
-	        url: "login",
-	        dataType: "text",
-	        data: self.state,
-	        success: self.__sendAuthDataSuccess
-	      });
+	      _Utilities2.default.sendData(this.state, "login", this.__sendAuthDataSuccess);
 	    }
 	  }, {
 	    key: '__sendAuthDataSuccess',
 	    value: function __sendAuthDataSuccess(data) {
-	      console.log("redirecting ... new assign way ... ");
 	      window.location.replace("http://localhost:3000/dashboard");
 	    }
 	  }, {

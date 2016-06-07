@@ -41,15 +41,22 @@ app.get('/', function (req, res) {
      res.sendFile(path.resolve("login.html"));
    }
  });
+ app.post('/test', function (req, res) {
+   console.log(req.body);
+ });
+
+ app.post('/submitOrder', function (req, res) {
+   console.log(req.body);
+ });
+
+ 
 app.post('/login',function (req, res) {
  login.checkCredentials(req.body).then(function(data){
    if(data.status==1){
       req.session.userKey=data.id;
       req.session.name=data.name;
       req.session.username=data.username;
-      console.log("Setting cookie with",data.name);
       var cookieData = JSON.stringify({'name': data.name, 'id':data.id});
-      console.log("COOKIIEDATAAAA:", cookieData);
       res.cookie('data',cookieData , { maxAge: 900000 }); }
    res.send(data);
  }).catch(function(err){
