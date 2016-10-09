@@ -20,7 +20,6 @@
     "express": "*",
     "express-session": "^1.13.0",
     "history": "*",
-    "jQuery": "^1.7.4",
     "jquery": "^2.2.4",
     "mysql": "*",
     "react": "*",

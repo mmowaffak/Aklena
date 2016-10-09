@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2016 at 04:23 PM
+-- Generation Time: Oct 08, 2016 at 02:47 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 7.0.0
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `fname` varchar(15) DEFAULT NULL,
   `lname` varchar(15) DEFAULT NULL,
-  `email` varchar(25) DEFAULT NULL,
+  `username` varchar(25) DEFAULT NULL,
   `uid` int(11) NOT NULL,
   `eventumExt` varchar(3) DEFAULT NULL,
   `phone` varchar(13) DEFAULT NULL,
@@ -40,10 +40,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`fname`, `lname`, `email`, `uid`, `eventumExt`, `phone`, `password`) VALUES
+INSERT INTO `users` (`fname`, `lname`, `username`, `uid`, `eventumExt`, `phone`, `password`) VALUES
 ('Yasmin', 'Tayel', 'ytayel@eventumsolutions.c', 1, '125', '01223211344', ''),
 ('Ahmed', 'Kabbany', 'akabbany@eventumsolutions', 2, '126', '0122336532', ''),
-('Moustafa', 'Mowaffak', 'mmowaffak@eventumsolution', 3, '125', '01287897960', '123456');
+('Moustafa', 'Mowaffak', 'mmowaffak@eventumsolution', 3, '125', '01287897960', '123456'),
+('James', 'Bond', 'test', 4, '122', '0123456789', 'test');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
