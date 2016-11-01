@@ -2,7 +2,7 @@ import React from "react"
 import FormControl from '../../node_modules/react-bootstrap/lib/FormControl';
 import Modal from '../../node_modules/react-bootstrap/lib/Modal';
 import Button from '../../node_modules/react-bootstrap/lib/Button';
-import Utilities from '../modules/Utilities.js';
+import Utilities from '../Util/Utilities.js';
 
 class LoginWidget extends React.Component{
    constructor(){

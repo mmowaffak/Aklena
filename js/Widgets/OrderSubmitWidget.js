@@ -6,8 +6,8 @@ import {ControlLabel} from 'react-bootstrap';
 import {FormControl} from 'react-bootstrap';
 import {Well} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-import Utilities from '../modules/Utilities.js';
-import Time from '../modules/Time.js';
+import Utilities from '../Util/Utilities.js';
+import Time from '../Util/Time.js';
 
 
 class OrderSubmitWidget extends React.Component{
