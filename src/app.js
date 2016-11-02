@@ -4,12 +4,10 @@ var bodyParser = require("body-parser");
 var path = require('path');
 var login = require("./Controllers/login");
 var cookieParser = require('cookie-parser');
-var redis   = require("redis");
-var session = require('express-session');
-var redisStore = require('connect-redis')(session);
-var client  = redis.createClient();
 var app = express();
 var dispatcher = require('./Controllers/dispatcher');
+var Session = require('./Helpers/Session');
+
 app.use(cookieParser());
 
 db.initiate();
@@ -17,19 +15,14 @@ db.initiate();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('Public'));
-app.use(session({
-    secret: 'ssshhhhh',
-    // create new redis store.
-    store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl :  22260}),
-    saveUninitialized: false,
-    resave: false,
-    name :"moustafa"
-}));
+
+Session.startSession(app);
+
 app.get('/', function (req, res) {
   //@FIXME here you should forward any request to a central handler
   if(req.session ==undefined){
     console.log("REDIS NOT INITIALIZED !");
-    res.send("REDIS IS NOT INITIALIZED, In you console type redis-server to start the process.");
+    res.send("REDIS IS NOT INITIALIZED, In your console type 'redis-server --daemonize yes'to start the process.");
   }
   else{
     if(req.session.userKey && req.session.userKey!==undefined){
