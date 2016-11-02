@@ -1,4 +1,4 @@
-var db = require("./database.js");
+var db = require("./Database.js");
 module.exports ={};
 exports = {
     checkCredentials : function(body,res){

@@ -7,10 +7,11 @@ exports = {
 
   connection = mysql.createConnection({
       host     : 'localhost',
-      user     : 'root',
+      user     : 'test',
       password : ''
     });
   module.exports.connection = connection;
+  console.log("Elmafrood connecting ... !");
     if(connection.connect()){
       console.log("Database is up!");
     }
