@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactGridLayout from "react-grid-layout";
-import MyNavBar from "../components/NavBar.js";
-import OrderHistoryWidget from "../components/OrderHistoryWidget.js";
-import CurrentOrderWidget from "../components/CurrentOrderWidget.js";
-import OrderSubmitWidget from "../components/OrderSubmitWidget.js";
- 
+import MyNavBar from "../Widgets/NavBar.js";
+import OrderHistoryWidget from "../Widgets/OrderHistoryWidget.js";
+import CurrentOrderWidget from "../Widgets/CurrentOrderWidget.js";
+import OrderSubmitWidget from "../Widgets/OrderSubmitWidget.js";
+
 
 class Dashboard extends React.Component{
   render() {

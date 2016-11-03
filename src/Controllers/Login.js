@@ -4,7 +4,7 @@ exports = {
     checkCredentials : function(body,res){
       return new Promise(function(resolve, reject) {
         connection = db.connection;
-        var queryToCheck = "SELECT * from Aklena.users where username='"+body["username"]+"' and password='"+body["password"]+"'";
+        var queryToCheck = "SELECT * from aklena.users where username='"+body["username"]+"' and password='"+body["password"]+"'";
            connection.query(queryToCheck, function(err, rows, fields) {
          if (err){
           retObj = {"status":0};

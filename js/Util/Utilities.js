@@ -1,13 +1,14 @@
 module.exports ={};
 
 exports = {
-  sendData:function (data, resource, successCallBack, returnType ='text'){
+  sendData:function (data, resource, successCallBack, errorCallback ,returnType ='text'){
     $.post(
       {
         url:resource,
         dataType : returnType,
         data:data,
-        success: successCallBack
+        success: successCallBack,
+        error : errorCallback
       }
     );
 

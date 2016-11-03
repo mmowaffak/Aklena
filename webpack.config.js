@@ -1,13 +1,13 @@
 
 var config = {
    entry: {
-     index:'./client/main.js',
-     dashboard:'./client/dashboardEntry.js'
+     index:'./js/main.js',
+     dashboard:'./js/dashboardEntry.js'
    },
    devtool : 'sourcemaps',
    output: {
       path:'./',
-      filename: './server/assets/[name].js',
+      filename: './src/Public/[name].js',
    },
    module: {
       loaders: [ {

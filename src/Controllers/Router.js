@@ -8,6 +8,7 @@ module.exports = {
   loadRoutes : function(app){
     router.get('/', function (req, res) {
       //@FIXME here you should forward any request to a central handler
+      // the redis part should be a middleware checked by every one
       if(req.session ==undefined){
         console.log("REDIS NOT INITIALIZED !");
         res.send("REDIS IS NOT INITIALIZED, In your console type 'redis-server --daemonize yes'to start the process.");
@@ -40,6 +41,10 @@ module.exports = {
           req.session.username=data.username;
           var cookieData = JSON.stringify({'name': data.name, 'id':data.id});
           res.cookie('data',cookieData , { maxAge: 900000 }); }
+
+          else{
+            data = "noLogin";
+          }
        res.send(data);
      }).catch(function(err){
        console.log(err);
