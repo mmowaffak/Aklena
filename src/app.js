@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./Controllers/Database.js');
+var db = require('./Helpers/Database.js');
 var app = express();
 var cookieParser = require('cookie-parser');
 var Session = require('./Helpers/Session');

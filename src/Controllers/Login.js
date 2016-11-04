@@ -1,4 +1,4 @@
-var db = require("./Database.js");
+var db = require("../Helpers/Database.js");
 module.exports ={};
 exports = {
     checkCredentials : function(body,res){

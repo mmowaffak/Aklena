@@ -54,7 +54,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _LoginWidget = __webpack_require__(564);
+	var _LoginWidget = __webpack_require__(565);
 	
 	var _LoginWidget2 = _interopRequireDefault(_LoginWidget);
 	
@@ -27365,12 +27365,17 @@
 	      error: errorCallback
 	    });
 	  },
-	  get: function get(resource, successCallBack, errorCallback) {
-	    var returnType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "html";
+	  get: function get() {
+	    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var resource = arguments[1];
+	    var successCallBack = arguments[2];
+	    var errorCallback = arguments[3];
+	    var returnType = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "text";
 	
 	    $.get({
 	      url: resource,
 	      dataType: returnType,
+	      data: data,
 	      success: successCallBack,
 	      error: errorCallback
 	    });
@@ -27489,7 +27494,8 @@
 /* 561 */,
 /* 562 */,
 /* 563 */,
-/* 564 */
+/* 564 */,
+/* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

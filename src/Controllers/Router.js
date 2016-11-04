@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require('path');
 var login = require("./Login");
 var Session = require ("../Helpers/Session");
+var Subscriptions = require ("./Subscriptions");
 
 module.exports = {
   loadRoutes : function(app){
@@ -33,7 +34,7 @@ module.exports = {
     router.post('/login',function (req, res) {
       //@FIXME there shouldn't be anylogic here. just routing to a controller/route
      login.checkCredentials(req.body).then(function(data){
-       if(data.status==1){
+       if(data.status){
           req.session.userKey=data.id;
           req.session.name=data.name;
           req.session.username=data.username;
@@ -53,6 +54,16 @@ module.exports = {
       Session.logout(req);
       res.send("logout");
     });
+
+    router.get('/fetchSubscriptions',function(req,res){
+      Subscriptions.fetchSubscriptions(req.body).then(function(data){
+        //the data is from the resolve ...
+        res.send(data);
+      }).catch(function(err){
+        console.log(err);
+      });
+    });
+
     app.use('/',router);
   }
 }

@@ -12,11 +12,12 @@ exports = {
       }
     );
 },
-  get:function(resource,successCallBack,errorCallback,returnType="html"){
+  get:function(data=null,resource,successCallBack,errorCallback,returnType="text"){
     $.get(
       {
         url:resource,
         dataType:returnType,
+        data:data,
         success: successCallBack,
         error : errorCallback
       }
