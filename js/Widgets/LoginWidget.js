@@ -30,7 +30,7 @@ class LoginWidget extends React.Component {
   }
 
   sendAuthData() {
-    Utilities.sendData(this.state, "login", this.__sendAuthDataSuccess, this.__sendAuthDataError);
+    Utilities.post(this.state, "login", this.__sendAuthDataSuccess, this.__sendAuthDataError);
   }
   __sendAuthDataError() {
     alert("Error callback");
@@ -39,6 +39,7 @@ class LoginWidget extends React.Component {
     if (result==="noLogin") {
       alert("Wrong username and/Or password.");
     } else {
+      //@FIXME this should be changed to a get request
       window.location.replace("http://localhost:3000/dashboard");
     }
   }

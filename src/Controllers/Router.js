@@ -49,11 +49,9 @@ module.exports = {
        console.log(err);
      });
     });
-
     router.get('/logout',function(req,res){
-      console.log("Logging out ... ");
-      res.sendFile(path.resolve("login.html"));
-      //Session.logout();
+      Session.logout(req);
+      res.send("logout");
     });
     app.use('/',router);
   }

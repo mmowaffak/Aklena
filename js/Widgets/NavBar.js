@@ -24,7 +24,8 @@ class MyNavBar extends React.Component{
         <NavItem eventKey={2} href="#">Settings</NavItem>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={2} onClick={this.logout.bind(this)}>Hello, {this.props.userName} </NavItem>
+        <NavItem eventKey={2}>Hello, {this.props.userName} </NavItem>
+        <NavItem eventKey={2} onClick={this.logout.bind(this)}>Logout </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
@@ -34,7 +35,7 @@ class MyNavBar extends React.Component{
     Utilities.get("logout",this.successLogout ,this.errorLogout );
   }
   successLogout(){
-    console.log("Successfuly Logged out");
+    window.location.replace("http://localhost:3000/");
   }
   errorLogout(){
 

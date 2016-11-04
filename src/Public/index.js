@@ -27342,18 +27342,19 @@
 /* 450 */,
 /* 451 */,
 /* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */
+/* 453 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	module.exports = {};
 	
 	exports = {
-	  sendData: function sendData(data, resource, successCallBack, errorCallback) {
+	  post: function post() {
+	    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var resource = arguments[1];
+	    var successCallBack = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	    var errorCallback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 	    var returnType = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'text';
 	
 	    $.post({
@@ -27363,11 +27364,24 @@
 	      success: successCallBack,
 	      error: errorCallback
 	    });
+	  },
+	  get: function get(resource, successCallBack, errorCallback) {
+	    var returnType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "html";
+	
+	    $.get({
+	      url: resource,
+	      dataType: returnType,
+	      success: successCallBack,
+	      error: errorCallback
+	    });
 	  }
 	};
 	module.exports = exports;
 
 /***/ },
+/* 454 */,
+/* 455 */,
+/* 456 */,
 /* 457 */,
 /* 458 */,
 /* 459 */,
@@ -27502,7 +27516,7 @@
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _Utilities = __webpack_require__(456);
+	var _Utilities = __webpack_require__(453);
 	
 	var _Utilities2 = _interopRequireDefault(_Utilities);
 	
@@ -27554,7 +27568,7 @@
 	  }, {
 	    key: 'sendAuthData',
 	    value: function sendAuthData() {
-	      _Utilities2.default.sendData(this.state, "login", this.__sendAuthDataSuccess, this.__sendAuthDataError);
+	      _Utilities2.default.post(this.state, "login", this.__sendAuthDataSuccess, this.__sendAuthDataError);
 	    }
 	  }, {
 	    key: '__sendAuthDataError',
@@ -27567,6 +27581,7 @@
 	      if (result === "noLogin") {
 	        alert("Wrong username and/Or password.");
 	      } else {
+	        //@FIXME this should be changed to a get request
 	        window.location.replace("http://localhost:3000/dashboard");
 	      }
 	    }

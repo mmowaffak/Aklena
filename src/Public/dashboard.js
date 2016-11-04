@@ -20861,17 +20861,21 @@
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _OrderHistoryWidget = __webpack_require__(453);
+	var _OrderHistoryWidget = __webpack_require__(454);
 	
 	var _OrderHistoryWidget2 = _interopRequireDefault(_OrderHistoryWidget);
 	
-	var _CurrentOrderWidget = __webpack_require__(454);
+	var _CurrentOrderWidget = __webpack_require__(455);
 	
 	var _CurrentOrderWidget2 = _interopRequireDefault(_CurrentOrderWidget);
 	
-	var _OrderSubmitWidget = __webpack_require__(455);
+	var _OrderSubmitWidget = __webpack_require__(456);
 	
 	var _OrderSubmitWidget2 = _interopRequireDefault(_OrderSubmitWidget);
+	
+	var _SubscriptionsWidget = __webpack_require__(565);
+	
+	var _SubscriptionsWidget2 = _interopRequireDefault(_SubscriptionsWidget);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20894,7 +20898,7 @@
 	    key: "render",
 	    value: function render() {
 	      // layout is an array of objects, see the demo for more complete usage
-	      var layout = [{ i: 'b', x: 0, y: 0, w: 4, h: 2 }, { i: 'c', x: 4, y: 0, w: 4, h: 2 }, { i: 'd', x: 8, y: 0, w: 4, h: 2 }];
+	      var layout = [{ i: 'b', x: 0, y: 0, w: 4, h: 5 }, { i: 'c', x: 4, y: 0, w: 4, h: 5 }, { i: 'd', x: 8, y: 0, w: 4, h: 5 }, { i: 'e', x: 4, y: 6, w: 4, h: 5 }];
 	      return _react2.default.createElement(
 	        "div",
 	        null,
@@ -20915,6 +20919,11 @@
 	          _react2.default.createElement(
 	            "div",
 	            { key: 'd' },
+	            _react2.default.createElement(_SubscriptionsWidget2.default, null)
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { key: 'e' },
 	            _react2.default.createElement(_OrderHistoryWidget2.default, null)
 	          )
 	        )
@@ -27099,6 +27108,10 @@
 	
 	var _reactBootstrap = __webpack_require__(188);
 	
+	var _Utilities = __webpack_require__(453);
+	
+	var _Utilities2 = _interopRequireDefault(_Utilities);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27158,15 +27171,33 @@
 	            { pullRight: true },
 	            _react2.default.createElement(
 	              _reactBootstrap.NavItem,
-	              { eventKey: 2, href: "localhost:3000/logout" },
+	              { eventKey: 2 },
 	              "Hello, ",
 	              this.props.userName,
 	              " "
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavItem,
+	              { eventKey: 2, onClick: this.logout.bind(this) },
+	              "Logout "
 	            )
 	          )
 	        )
 	      );
 	    }
+	  }, {
+	    key: "logout",
+	    value: function logout() {
+	      _Utilities2.default.get("logout", this.successLogout, this.errorLogout);
+	    }
+	  }, {
+	    key: "successLogout",
+	    value: function successLogout() {
+	      window.location.replace("http://localhost:3000/");
+	    }
+	  }, {
+	    key: "errorLogout",
+	    value: function errorLogout() {}
 	  }]);
 	
 	  return MyNavBar;
@@ -46522,6 +46553,43 @@
 
 /***/ },
 /* 453 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	module.exports = {};
+	
+	exports = {
+	  post: function post() {
+	    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var resource = arguments[1];
+	    var successCallBack = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	    var errorCallback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+	    var returnType = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'text';
+	
+	    $.post({
+	      url: resource,
+	      dataType: returnType,
+	      data: data,
+	      success: successCallBack,
+	      error: errorCallback
+	    });
+	  },
+	  get: function get(resource, successCallBack, errorCallback) {
+	    var returnType = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "html";
+	
+	    $.get({
+	      url: resource,
+	      dataType: returnType,
+	      success: successCallBack,
+	      error: errorCallback
+	    });
+	  }
+	};
+	module.exports = exports;
+
+/***/ },
+/* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -46576,7 +46644,7 @@
 	exports.default = OrderHistoryWidget;
 
 /***/ },
-/* 454 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -46631,7 +46699,7 @@
 	exports.default = CurrentOrderWidget;
 
 /***/ },
-/* 455 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -46652,7 +46720,7 @@
 	
 	var _reactBootstrap = __webpack_require__(188);
 	
-	var _Utilities = __webpack_require__(456);
+	var _Utilities = __webpack_require__(453);
 	
 	var _Utilities2 = _interopRequireDefault(_Utilities);
 	
@@ -46742,29 +46810,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = OrderSubmitWidget;
-
-/***/ },
-/* 456 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	module.exports = {};
-	
-	exports = {
-	  sendData: function sendData(data, resource, successCallBack, errorCallback) {
-	    var returnType = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'text';
-	
-	    $.post({
-	      url: resource,
-	      dataType: returnType,
-	      data: data,
-	      success: successCallBack,
-	      error: errorCallback
-	    });
-	  }
-	};
-	module.exports = exports;
 
 /***/ },
 /* 457 */
@@ -61220,6 +61265,67 @@
 	    return zh_tw;
 	
 	}));
+
+/***/ },
+/* 564 */,
+/* 565 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(167);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(1);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _reactBootstrap = __webpack_require__(188);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SubscriptionsWidget = function (_React$Component) {
+	  _inherits(SubscriptionsWidget, _React$Component);
+	
+	  function SubscriptionsWidget() {
+	    _classCallCheck(this, SubscriptionsWidget);
+	
+	    return _possibleConstructorReturn(this, (SubscriptionsWidget.__proto__ || Object.getPrototypeOf(SubscriptionsWidget)).apply(this, arguments));
+	  }
+	
+	  _createClass(SubscriptionsWidget, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Panel,
+	        { header: "My Subscriptions", bsStyle: "danger" },
+	        "No subscriptions yet",
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { ref: this, style: { marginTop: 12 }, bsStyle: "danger", className: "btn pull-right" },
+	          "Add Subscription"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SubscriptionsWidget;
+	}(_react2.default.Component);
+	
+	exports.default = SubscriptionsWidget;
 
 /***/ }
 /******/ ]);

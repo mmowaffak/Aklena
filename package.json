@@ -4,7 +4,7 @@
   "description": "Food aggregator for Eventum",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "start": "webpack --watch"
   },
   "author": "Moustafa Mowaffak",
   "license": "BSD-2-Clause",
