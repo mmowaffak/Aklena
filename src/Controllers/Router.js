@@ -50,9 +50,10 @@ module.exports = {
      });
     });
 
-    router.post('/logout',function(req,res){
-      Session.logout(req);
+    router.get('/logout',function(req,res){
+      console.log("Logging out ... ");
       res.sendFile(path.resolve("login.html"));
+      //Session.logout();
     });
     app.use('/',router);
   }

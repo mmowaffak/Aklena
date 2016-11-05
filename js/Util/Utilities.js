@@ -1,7 +1,7 @@
 module.exports ={};
 
 exports = {
-  sendData:function (data, resource, successCallBack, errorCallback ,returnType ='text'){
+  sendData:function (data=null, resource, successCallBack=null, errorCallback=null,returnType ='text'){
     $.post(
       {
         url:resource,
@@ -11,7 +11,15 @@ exports = {
         error : errorCallback
       }
     );
-
-}
+},
+  get:function(resource,successCallBack,errorCallback){
+    $.get(
+      {
+        url:resource,
+        success: successCallBack,
+        error : errorCallback
+      }
+    );
+  }
 }
 module.exports = exports;

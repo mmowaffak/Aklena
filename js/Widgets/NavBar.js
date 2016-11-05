@@ -5,6 +5,8 @@ import {Nav} from "react-bootstrap";
 import {NavItem} from "react-bootstrap";
 import {MenuItem} from "react-bootstrap";
 import {NavDropdown} from "react-bootstrap";
+import Utilities from '../Util/Utilities.js';
+
 
 class MyNavBar extends React.Component{
   render(){
@@ -22,13 +24,21 @@ class MyNavBar extends React.Component{
         <NavItem eventKey={2} href="#">Settings</NavItem>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={2} href="localhost:3000/logout">Hello, {this.props.userName} </NavItem>
+        <NavItem eventKey={2} onClick={this.logout.bind(this)}>Hello, {this.props.userName} </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
     )
+  }
+  logout(){
+    Utilities.get("logout",this.successLogout ,this.errorLogout );
+  }
+  successLogout(){
+    console.log("Successfuly Logged out");
+  }
+  errorLogout(){
 
   }
-}
 
+}
 export default MyNavBar;
