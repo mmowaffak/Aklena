@@ -2,28 +2,26 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var login = require("./Login");
-
+var Session = require ("../Helpers/Session");
 
 module.exports = {
   loadRoutes : function(app){
     router.get('/', function (req, res) {
-      //@FIXME here you should forward any request to a central handler
-      // the redis part should be a middleware checked by every one
-      if(req.session ==undefined){
-        console.log("REDIS NOT INITIALIZED !");
-        res.send("REDIS IS NOT INITIALIZED, In your console type 'redis-server --daemonize yes'to start the process.");
-      }
-      else{
-        if(req.session.userKey && req.session.userKey!==undefined){
+      if(Session.checkSession(req)){
+        if(Session.isLoggedIn(req)){
           res.sendFile(path.resolve("dashboard.html"));
         }
-        else {
+        else{
           res.sendFile(path.resolve("login.html"));
         }
+      }
+      else {
+        res.send("REDIS IS NOT INITIALIZED, In your console type 'redis-server --daemonize yes'to start the process. If on windows, use : sudo service redis-server start");
       }
     });
 
     router.get('/dashboard', function (req, res) {
+      //@FIXME shouldnt this be in a middleware?
       if(req.session.userKey){
         res.sendFile(path.resolve("dashboard.html"));
       }
@@ -39,6 +37,7 @@ module.exports = {
           req.session.userKey=data.id;
           req.session.name=data.name;
           req.session.username=data.username;
+          console.log("Sending back a cookie .. ");
           var cookieData = JSON.stringify({'name': data.name, 'id':data.id});
           res.cookie('data',cookieData , { maxAge: 900000 }); }
 
@@ -51,7 +50,10 @@ module.exports = {
      });
     });
 
-
+    router.post('/logout',function(req,res){
+      Session.logout(req);
+      res.sendFile(path.resolve("login.html"));
+    });
     app.use('/',router);
   }
 }

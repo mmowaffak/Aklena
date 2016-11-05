@@ -22,7 +22,7 @@ class MyNavBar extends React.Component{
         <NavItem eventKey={2} href="#">Settings</NavItem>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={2} href="#">Hello, {this.props.userName} </NavItem>
+        <NavItem eventKey={2} href="localhost:3000/logout">Hello, {this.props.userName} </NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

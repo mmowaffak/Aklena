@@ -27158,7 +27158,7 @@
 	            { pullRight: true },
 	            _react2.default.createElement(
 	              _reactBootstrap.NavItem,
-	              { eventKey: 2, href: "#" },
+	              { eventKey: 2, href: "localhost:3000/logout" },
 	              "Hello, ",
 	              this.props.userName,
 	              " "

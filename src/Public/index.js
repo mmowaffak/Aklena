@@ -27564,16 +27564,11 @@
 	  }, {
 	    key: '__sendAuthDataSuccess',
 	    value: function __sendAuthDataSuccess(result, status, xhr) {
-	      console.log("Result is : ", result);
-	      console.log("Status : ", result["status"]);
-	      if (result["status"] === -1) {
+	      if (result === "noLogin") {
 	        alert("Wrong username and/Or password.");
 	      } else {
-	        alert("Kolo tamam!");
+	        window.location.replace("http://localhost:3000/dashboard");
 	      }
-	      // else {
-	      //   window.location.replace("http://localhost:3000/dashboard");
-	      // }
 	    }
 	  }, {
 	    key: 'render',

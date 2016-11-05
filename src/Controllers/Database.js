@@ -6,7 +6,7 @@ exports = {
   initiate: function() {
     connection = mysql.createConnection({
       host: 'localhost',
-      user: 'test',
+      user: 'root',
       password: '',
       database: 'aklena'
     });
@@ -19,6 +19,12 @@ exports = {
       console.log('connected as id ' + connection.threadId);
     });
   },
+  terminate : function(){
+    //This will close the DB connection
+  },
+  query : function(){
+    //Sanitation and other functions?
+  }
 }
 
 
