@@ -61314,63 +61314,125 @@
 	    var _this = _possibleConstructorReturn(this, (SubscriptionsWidget.__proto__ || Object.getPrototypeOf(SubscriptionsWidget)).call(this));
 	
 	    var self = _this;
+	    _this.state = { "showModal": false };
 	    _this.fetchSuccess = _this.fetchSuccess.bind(_this);
 	    _this.fetchSubscriptions();
+	
 	    return _this;
 	  }
-	  // componentDidMount(){
-	  //   this.fetchSubscriptions;
-	  // }
-	
 	
 	  _createClass(SubscriptionsWidget, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {}
+	  }, {
 	    key: "fetchSubscriptions",
 	    value: function fetchSubscriptions() {
-	      //@FIXME ajax to get subscriptions
 	      _Utilities2.default.get(1, "fetchSubscriptions", this.fetchSuccess, "");
+	    }
+	  }, {
+	    key: "close",
+	    value: function close() {
+	      this.setState({ showModal: false });
+	    }
+	  }, {
+	    key: "open",
+	    value: function open() {
+	      this.setState({ showModal: true });
 	    }
 	  }, {
 	    key: "fetchSuccess",
 	    value: function fetchSuccess(result, status, xhr) {
-	      console.log("THIS ", this);
-	
+	      console.log("setting state with : ", result);
 	      this.setState({ "subscriptions": result });
+	    }
+	  }, {
+	    key: "removeSubscription",
+	    value: function removeSubscription(event) {
+	      event.persist();
+	      console.log("REMOVING SUBSCRIPTION...from ", event);
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
 	      var shownData = "";
-	      if (!this.state) {
+	      if (!this.state.subscriptions) {
 	        shownData = "No Subscriptions";
 	      } else {
-	        shownData = this.state.subscriptions;
-	      }
-	      return _react2.default.createElement(
-	        _reactBootstrap.Panel,
-	        { header: "My Subscriptions", bsStyle: "danger" },
-	        _react2.default.createElement(
-	          Table,
-	          { responsive: true },
-	          _react2.default.createElement(
-	            "thead",
-	            null,
-	            "Name"
-	          ),
-	          _react2.default.createElement(
-	            "tbody",
-	            null,
+	        var subscribees = JSON.parse(this.state.subscriptions)["data"];
+	        var self = this;
+	        shownData = subscribees.map(function (subscribees, index) {
+	          return _react2.default.createElement(
+	            "tr",
+	            { key: index },
 	            _react2.default.createElement(
 	              "td",
 	              null,
-	              "shownData[\"data\"][0]",
-	              "fname"
+	              subscribees["fname"] + " " + subscribees["lname"],
+	              _react2.default.createElement("span", { onClick: self.removeSubscription.bind(self), className: "glyphicon glyphicon-remove pull-right" })
 	            )
+	          );
+	        });
+	      }
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Panel,
+	          { header: "My Subscriptions", bsStyle: "danger" },
+	          _react2.default.createElement(
+	            _reactBootstrap.Table,
+	            { responsive: true },
+	            _react2.default.createElement(
+	              "thead",
+	              null,
+	              _react2.default.createElement(
+	                "tr",
+	                null,
+	                _react2.default.createElement(
+	                  "th",
+	                  null,
+	                  " Name "
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "tbody",
+	              null,
+	              shownData
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { onClick: this.open.bind(this), ref: this, style: { marginTop: 12 }, bsStyle: "danger", className: "btn pull-right" },
+	            "Add Subscription"
 	          )
 	        ),
 	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          { ref: this, style: { marginTop: 12 }, bsStyle: "danger", className: "btn pull-right" },
-	          "Add Subscription"
+	          _reactBootstrap.Modal,
+	          { show: this.state.showModal, onHide: this.close.bind(this) },
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Header,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Modal.Title,
+	              null,
+	              "Modal heading"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Body,
+	            null,
+	            _react2.default.createElement(
+	              "h4",
+	              null,
+	              "Text in a modal"
+	            ),
+	            _react2.default.createElement(
+	              "p",
+	              null,
+	              "Duis mollis, est non commodo luctus, nisi erat porttitor ligula."
+	            )
+	          )
 	        )
 	      );
 	    }

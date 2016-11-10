@@ -32,6 +32,10 @@ class SubscriptionsWidget extends React.Component{
     console.log("setting state with : ", result);
     this.setState({"subscriptions":result});
   }
+  removeSubscription(event){
+    event.persist();
+    console.log("REMOVING SUBSCRIPTION...from ", event);
+  }
   render(){
     var shownData = "";
     if(!this.state.subscriptions){
@@ -39,10 +43,13 @@ class SubscriptionsWidget extends React.Component{
     }
     else{
       var subscribees = JSON.parse(this.state.subscriptions)["data"];
+      var self = this;
       shownData = subscribees.map(function(subscribees,index){
         return (
           <tr key={index}>
-          <td>{subscribees["fname"] +" "+ subscribees["lname"]}</td>
+          <td>{subscribees["fname"] +" "+ subscribees["lname"]}
+              <span onClick={self.removeSubscription.bind(self)} className="glyphicon glyphicon-remove pull-right"></span>
+          </td>
           </tr>
         );
       });
@@ -56,6 +63,9 @@ class SubscriptionsWidget extends React.Component{
               <th> Name </th>
             </tr>
           </thead>
+          <tbody>
+            {shownData}
+          </tbody>
 
         </Table>
         <Button onClick ={this.open.bind(this)} ref ={this} style={{marginTop:12}} bsStyle ="danger" className ="btn pull-right">Add Subscription</Button>

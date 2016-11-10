@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 01, 2016 at 02:14 PM
+-- Generation Time: Nov 09, 2016 at 03:31 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -68,6 +68,14 @@ CREATE TABLE `subscriptions` (
   `uid` int(11) NOT NULL,
   `subscribeTo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subscriptions`
+--
+
+INSERT INTO `subscriptions` (`sid`, `uid`, `subscribeTo_id`) VALUES
+(1, 1, 2),
+(2, 1, 3);
 
 -- --------------------------------------------------------
 
